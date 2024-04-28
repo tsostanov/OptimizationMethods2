@@ -61,27 +61,43 @@ def golden_section_method(func, a, b, epsilon):
     y2 = func(x2)
     print(f"y1 = {y1}, y2 = {y2}")
     if y1 >= y2:
-        print("y1 >= y2, поэтому a = x1")
+        print("y1 >= y2, поэтому a = x1, x1 = x2")
         a = x1
+        x1 = x2
+        y1 = y2
+        x2 = a + (b - a) / phi
+        y2 = func(x2)
+        print(f"x2 = {x2}, y2 = {y2}")
     else:
-        print("y1 < y2, поэтому b = x2")
+        print("y1 < y2, поэтому b = x2, x2 = x1")
         b = x2
+        x2 = x1
+        y2 = y1
+        x1 = b - (b - a) / phi
+        y1 = func(x1)
+        print(f"x1 = {x1}, y1 = {y1}")
     while abs(b - a) >= epsilon:
         iteration += 1
         print(f"Шаг номер {iteration}")
         print(f"a = {a}, b = {b}")
-        x1 = b - (b - a) / phi
-        x2 = a + (b - a) / phi
         print(f"x1 = {x1}, x2 = {x2}")
-        y1 = func(x1)
-        y2 = func(x2)
         print(f"y1 = {y1}, y2 = {y2}")
         if y1 >= y2:
-            print("y1 >= y2, поэтому a = x1")
+            print("y1 >= y2, поэтому a = x1, x1 = x2")
             a = x1
+            x1 = x2
+            y1 = y2
+            x2 = a + (b - a) / phi
+            y2 = func(x2)
+            print(f"x2 = {x2}, y2 = {y2}")
         else:
-            print("y1 < y2, поэтому b = x2")
+            print("y1 < y2, поэтому b = x2, x2 = x1")
             b = x2
+            x2 = x1
+            y2 = y1
+            x1 = b - (b - a) / phi
+            y1 = func(x1)
+            print(f"x1 = {x1}, y1 = {y1}")
     xm = (a + b) / 2
     ym = func(xm)
     print(f"Xm = {xm}, Ym = {ym}")
